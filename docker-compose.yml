@@ -1,0 +1,45 @@
+version: '3.9'
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "YourStrong@Passw0rd"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - appnet
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: dotnet-backend
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__DefaultConnection: "Server=sqlserver,1433;Database=AuthDemo;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=True;"
+      JwtSettings__Key: "THIS_IS_A_SUPER_SECRET_JWT_KEY_CHANGE_ME"
+      JwtSettings__Issuer: "YourApp"
+      JwtSettings__Audience: "YourAppUsers"
+    ports:
+      - "5000:8080"
+    depends_on:
+      - sqlserver
+    networks:
+      - appnet
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: react-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - appnet
+
+networks:
+  appnet:
