@@ -2,6 +2,7 @@ using AuthenticationAPI.Controllers;
 using AuthenticationCL.DTOs;
 using AuthenticationCL.IServices;
 using AuthenticationCL.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
@@ -15,17 +16,32 @@ public class CommuneController : BaseController
     }
  
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterDto dto)
+    [AllowAnonymous]
+    public async Task<IActionResult> Register(RegisterRequestDTO request)
     {
-        var user = await _authService.Register(dto);
-        return Ok(new { message = "User registered", email = user.Email });
+        var result = await _authService.RegisterAsync(request);
+        return Ok(result);
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginDto dto)
+    [AllowAnonymous]
+    public async Task<IActionResult> Login(LogInRequestDTO request)
     {
-        var token = await _authService.Login(dto);
-        return Ok(new { token });
+        var result = await _authService.LoginAsync(request);
+        return Ok(result);
+    }
+    [HttpGet("admin")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult Admin()
+    {
+        return Ok("Welcome Admin!");
+    }
+
+    [HttpGet("user")]
+    [Authorize(Roles = "User,Admin")]
+    public IActionResult User()
+    {
+        return Ok("Welcome User!");
     }
 
 }

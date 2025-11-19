@@ -1,16 +1,13 @@
-﻿using AuthenticationCL.Domain;
+﻿using AuthenticationCL.Domain.Entities;
 using AuthenticationCL.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AuthenticationCL.IServices
 {
     public interface IAuthService
     {
-        Task<User> Register(RegisterDto dto);
-        Task<string> Login(LoginDto dto);
+        Task<string> GenerateJwt(User user);
+        Task<string> GenerateRefreshTokenAsync(string email);
+        Task<AuthResponse> RegisterAsync(RegisterRequestDTO request);
+        Task<AuthResponse> LoginAsync(LogInRequestDTO request);
     }
 }
