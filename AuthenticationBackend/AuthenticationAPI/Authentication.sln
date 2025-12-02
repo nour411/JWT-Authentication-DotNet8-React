@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationAPI", "AuthenticationAPI.csproj", "{03958EF7-080E-4E97-88DC-8D510A0F0841}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationCL", "..\AuthenticationCL\AuthenticationCL.csproj", "{024650DA-3F41-47D5-BC29-28DC0B38C7F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +17,15 @@ Global
 		{03958EF7-080E-4E97-88DC-8D510A0F0841}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03958EF7-080E-4E97-88DC-8D510A0F0841}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03958EF7-080E-4E97-88DC-8D510A0F0841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{024650DA-3F41-47D5-BC29-28DC0B38C7F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{024650DA-3F41-47D5-BC29-28DC0B38C7F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{024650DA-3F41-47D5-BC29-28DC0B38C7F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{024650DA-3F41-47D5-BC29-28DC0B38C7F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDE92C1E-BFC8-4ABD-9E62-639FEF69509D}
 	EndGlobalSection
 EndGlobal
